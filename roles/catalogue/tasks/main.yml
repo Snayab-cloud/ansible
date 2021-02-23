@@ -1,4 +1,8 @@
 - name: print
   debug:
     msg: Hello from catalogue
-    
+
+
+- name: print1
+  debug:
+    msg: Hello from catalogue
