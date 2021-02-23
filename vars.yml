@@ -1,0 +1,7 @@
+- name: Demo on paly variables
+  hosta: all
+  vars:
+    URL: nayab.com
+  tasks:
+    - debug:
+        masg: URL = {{ URL }}
