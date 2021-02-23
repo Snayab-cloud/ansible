@@ -1,1 +1,1 @@
-100.26.133.116
+100.26.133.116 ansible_ssh_user=root ansible_ssh_pass=DevOps321
