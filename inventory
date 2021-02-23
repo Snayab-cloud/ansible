@@ -1,2 +1,3 @@
-54.158.44.97 APP=frontend
+54.158.44.97 ansible_ssh_user=root ansible_ssh_pass=DevOps321
+
 
