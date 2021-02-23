@@ -18,7 +18,7 @@ IPADDRESS=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=${compone
 
 export component
 export IPADDRESS
-envsubst <record.json >/tmp/${component}.json
+#envsubst <record.json >/tmp/${component}.json
 
 aws route53 change-resource-record-sets --hosted-zone-id Z00341192WJL0C5R48CT1 --change-batch file:///tmp/${component}.json
 
