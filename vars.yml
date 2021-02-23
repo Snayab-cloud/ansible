@@ -1,5 +1,5 @@
 - name: Demo on paly variables
-  hosta: all
+  hosts: all
   vars:
     URL: nayab.com
   tasks:
