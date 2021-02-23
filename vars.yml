@@ -4,4 +4,4 @@
     URL: nayab.com
   tasks:
     - debug:
-        masg: URL = {{ URL }}
+        masg: URL = {{ URL }
