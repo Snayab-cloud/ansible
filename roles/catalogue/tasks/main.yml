@@ -1,0 +1,4 @@
+- name: print
+  debug:
+    msg: Hello from catalogue
+    
