@@ -1,9 +1,9 @@
 {
   "Comment": "CREATE/DELETE/UPSERT a record ",
   "Changes": [{
-    "Action": "UPSERT",
+    "Action": "CREATE",
     "ResourceRecordSet": {
-      "Name": "${component}-aa.shaik.cf",
+      "Name": "${component}-.shaik.cf",
       "Type": "A",
       "TTL": 300,
       "ResourceRecords": [{ "Value": "${IPADDRESS}"}]
