@@ -1,3 +1,4 @@
-54.164.121.34 ansible_ssh_user=root ansible_ssh_pass=DevOps321
+54.164.121.34
+#ansible_ssh_user=root ansible_ssh_pass=DevOps321
 
 
