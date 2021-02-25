@@ -19,6 +19,11 @@
     dest: "{{EXTRACT_DIR}}"
     remote_src: yes
 
+#- name:  Move Htdocs directory
+# shell: mv /usr/share/nginx/html/static/* /usr/share/nginx/html/.
+# when: APP == "frontend"
+#go with move command above instead of below two syntaxes below
+
 - name: Move Htdocs directory
   copy:
     src: /usr/share/nginx/html/static/
