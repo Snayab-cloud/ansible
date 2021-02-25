@@ -6,7 +6,7 @@
 - name: Install MongoDB
   yum:
     name: mongodb-org
-    state: present
+    state: installed
 
 - name: Update MongoDB config file from listening 127.0.0.1 to 0.0.0.0
   ansible.builtin.replace:
