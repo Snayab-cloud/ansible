@@ -8,12 +8,12 @@
     path: "{{EXTRACT_DIR}}"
     state: absent
 
-- name: create directory for {{ APP }} component
+- name: Create directory for {{ APP }} component
   file:
     path: "{{EXTRACT_DIR}}"
     state: directory
 
-- name: unarchive {{ APP }} component
+- name: Unarchive {{ APP }} component
   ansible.builtin.unarchive:
     src: /tmp/{{APP}}.zip
     dest: "{{EXTRACT_DIR}}"
