@@ -1,0 +1,18 @@
+- name: Install NodeJS
+  yum:
+    name:
+      - nodejs
+      - make
+      - gcc-c++
+    state: present
+
+- name: Download {{ APP }} component
+  ansible.builtin.include_tasks: curl_download
+  vars:
+    EXTRACT_DIR: /home/roboshop/{{APP}}
+    APP_USER: roboshop
+
+- name: Install NodeJS Module
+  community.general.npm:
+    path: /home/roboshop/{{APP}}
+  become_user: roboshop

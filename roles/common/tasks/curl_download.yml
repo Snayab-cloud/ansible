@@ -1,15 +1,15 @@
 - name: Download {{ APP }} component
-  get_url:
+  ansible.builtin.get_url:
     url: "{{URL}}"
     dest: /tmp/{{APP}}.zip
 
 - name: Remove old content
-  file:
+  ansible.builtin.file:
     path: "{{EXTRACT_DIR}}"
     state: absent
 
 - name: Create directory for {{ APP }} component
-  file:
+  ansible.builtin.file:
     path: "{{EXTRACT_DIR}}"
     state: directory
   become_user: "{{APP_USER}}"
@@ -27,14 +27,14 @@
 #go with move command above instead of below two syntaxes below
 
 - name: Move Htdocs directory
-  copy:
+  ansible.builtin.copy:
     src: /usr/share/nginx/html/static/
     dest: /usr/share/nginx/html/.
     remote_src: yes
   when: APP == "frontend"
 
 - name: Remove old htdocs
-  file:
+  ansible.builtin.file:
     path: /usr/share/nginx/html/static
     state: absent
   when: APP == "frontend"
