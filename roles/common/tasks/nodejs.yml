@@ -6,7 +6,7 @@
       - gcc-c++
     state: present
 
-- name: Download {{ APP }} component
+- name: Download {{ COMPONENT }} component
   ansible.builtin.include_tasks: curl_download
   vars:
     EXTRACT_DIR: /home/roboshop/{{APP}}
@@ -14,5 +14,5 @@
 
 - name: Install NodeJS Module
   community.general.npm:
-    path: /home/roboshop/{{APP}}
+    path: /home/roboshop/{{COMPONENT}}
   become_user: roboshop

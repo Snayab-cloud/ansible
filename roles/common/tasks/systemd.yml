@@ -1,6 +1,6 @@
-- name: Update systemd script for {{ APP }} service
+- name: Update systemd script for {{ COMPONENT }} service
   ansible.builtin.replace:
-    path: /home/roboshop/{{APP}}/systemd.service
+    path: /home/roboshop/{{COMPONENT}}/systemd.service
     regexp: "{{item.source}}"
     replace: "{{item.dest}}"
   loop:
@@ -15,11 +15,11 @@
     - {source: "DBHOST", dest: "mysql.shaik.cf"}
 
 - name: Setup systemd script
-  shell: mv /home/roboshop/{{APP}}/systemd.service /etc/systemd/system/{{APP}}.service
+  shell: mv /home/roboshop/{{COMPONENT}}/systemd.service /etc/systemd/system/{{COMPONENT}}.service
 
-- name: Start {{APP}} service
+- name: Start {{COMPONENT}} service
   systemd:
-    name: {{APP}}
+    name: "{{COMPONENT}}"
     state: restarted
     enabled: yes
     daemon_reload: yes
