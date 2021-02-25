@@ -21,7 +21,7 @@
 
 - name: Move Htdocs directory
   copy:
-    src: /usr/share/nginx/html/static/*
+    src: /usr/share/nginx/html/static/
     dest: /usr/share/nginx/html/.
     remote_src: yes
   when: APP == "frontend"
