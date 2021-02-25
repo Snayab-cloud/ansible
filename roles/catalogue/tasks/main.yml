@@ -27,7 +27,7 @@
     replace: 'mongodb.shaik.cf'
 
 - name: Setup systemd script
-  shell: mv # mv /home/roboshop/catalogue/systemd.service /etc/systemd/system/catalogue.service
+  shell: mv /home/roboshop/catalogue/systemd.service /etc/systemd/system/catalogue.service
 
 - name: Start catalogue service
   systemd:
