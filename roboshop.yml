@@ -24,25 +24,25 @@
       when: APP == "mongodb"
 
     - name: Import Redis
-        ansible.builtin.import_role:
-          name: redis
-        tags:
-          - redis
-        when: APP == "redis"
+      ansible.builtin.import_role:
+        name: redis
+      tags:
+       - redis
+      when: APP == "redis"
 
     - name: Import User
-        ansible.builtin.import_role:
-          name: user
-        tags:
-          - user
-        when: APP == "user"
+      ansible.builtin.import_role:
+        name: user
+      tags:
+       - user
+      when: APP == "user"
 
     - name: Import cart
-        ansible.builtin.import_role:
-          name: cart
-        tags:
-          - cart
-        when: APP == "cart"
+      ansible.builtin.import_role:
+        name: cart
+      tags:
+       - cart
+      when: APP == "cart"
 
 
 
