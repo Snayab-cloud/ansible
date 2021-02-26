@@ -21,23 +21,22 @@
     remote_src: yes
   become_user: "{{APP_USER}}"
 
-#- name:  Move Htdocs directory
-# shell: mv /usr/share/nginx/html/static/* /usr/share/nginx/html/.
-# when: APP == "frontend"
+- name:  Move Htdocs directory
+  shell: mv /usr/share/nginx/html/static/* /usr/share/nginx/html/.
+  when: APP == "frontend"
 #go with move command above instead of below two syntaxes below
 
-- name: Move Htdocs directory
-  ansible.builtin.copy:
-    src: /usr/share/nginx/html/static/
-    dest: /usr/share/nginx/html/.
-    remote_src: yes
-  when: APP == "frontend"
+#- name: Move Htdocs directory
+#  ansible.builtin.copy:
+#    dest: /usr/share/nginx/html/.
+#   remote_src: yes
+#  when: APP == "frontend"
 
-- name: Remove old htdocs
-  ansible.builtin.file:
-    path: /usr/share/nginx/html/static
-    state: absent
-  when: APP == "frontend"
+#- name: Remove old htdocs
+#  ansible.builtin.file:
+#    path: /usr/share/nginx/html/static
+#    state: absent
+#  when: APP == "frontend"
 
 
 
