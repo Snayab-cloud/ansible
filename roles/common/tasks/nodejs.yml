@@ -7,7 +7,7 @@
     state: present
 
 - name: Download {{ COMPONENT }} component
-  ansible.builtin.include_tasks: curl_download
+  include_tasks: curl_download
   vars:
     EXTRACT_DIR: /home/roboshop/{{APP}}
     APP_USER: roboshop
