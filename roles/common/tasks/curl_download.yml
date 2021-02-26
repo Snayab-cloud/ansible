@@ -1,6 +1,6 @@
 - name: Download {{ APP }} component
   ansible.builtin.get_url:
-    url: "{{URL}}"
+    URL: "{{URL}}"
     dest: /tmp/{{APP}}.zip
 
 - name: Remove old content
