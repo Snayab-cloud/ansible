@@ -7,9 +7,7 @@
     state: present
 
 - name: Download {{ COMPONENT }} component
-  include_role:
-    name: common
-    tasks_from: curl_download
+  include_tasks: curl_download.yml
   vars:
     EXTRACT_DIR: /home/roboshop/{{APP}}
     APP_USER: roboshop
