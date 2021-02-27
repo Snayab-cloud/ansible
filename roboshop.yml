@@ -58,6 +58,14 @@
        - shipping
       when: APP == "shipping"
 
+    - name: Import Rabbitmq
+      ansible.builtin.import_role:
+        name: rabbitmq
+      tags:
+       - rabbitmq
+      when: APP == "rabbitmq"
+
+
 
 
 
