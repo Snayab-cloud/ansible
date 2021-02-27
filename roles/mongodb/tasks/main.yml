@@ -36,4 +36,3 @@
     - users.js
   args:
     chdir: /tmp/mongodb
-
