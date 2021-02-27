@@ -51,6 +51,13 @@
        - mysql
       when: APP == "mysql"
 
+    - name: Import shipping
+      ansible.builtin.import_role:
+        name: shipping
+      tags:
+       - shipping
+      when: APP == "shipping"
+
 
 
 
