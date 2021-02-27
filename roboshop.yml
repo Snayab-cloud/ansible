@@ -44,5 +44,13 @@
        - cart
       when: APP == "cart"
 
+    - name: Import mysql
+      ansible.builtin.import_role:
+        name: mysql
+      tags:
+       - mysql
+      when: APP == "mysql"
+
+
 
 
