@@ -1,0 +1,55 @@
+- name: Setup MySQL Repo
+  ansible.builtin.copy:
+    src: mysql.repo
+    dest: /etc/yum.repos.d/mysql.repo
+
+- name: Remove mariadb-libs
+  ansible.builtin.yum:
+    name: mariadb-libs
+    state: absent
+
+- name: Install MySQL Server
+  ansible.builtin.yum:
+    name:
+      - mysql-community-server
+      - MySQL-python
+    state: present
+
+- name: Start MySQL Service
+  ansible.builtin.systemd:
+    name: mysqld
+    state: started
+    enabled: yes
+
+- name: Check DB has been configured or not
+  shell: echo "show databases;" | mysql -uroot -ppassword
+  ignore_errors: yes
+  register: out
+
+- name: Reset Default Password
+  when: out.rc != 0
+  block:
+    - name: Grab default mysql password
+      shell: grep 'temporary password' /var/log/mysqld.log | awk '{print $NF}'
+      register: PASSWORD
+
+    - name: Copy SQL file
+      copy:
+        src: password.sql
+        dest: /tmp/password.sql
+
+    - name: Reset MySQL Password
+      shell: mysql --connect-expired-password -uroot -p"{{PASSWORD.stdout}}" < /tmp/password.sql
+
+- name: Download {{ COMPONENT }} Schema
+  include_role:
+    name: common
+    tasks_from: curl_download
+  vars:
+    URL: "https://dev.azure.com/DevOps-Batches/f635c088-1047-40e8-8c29-2e3b05a38010/_apis/git/repositories/2235ab8a-3229-47d9-8065-b56713ed7b28/items?path=%2F&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=master&resolveLfs=true&%24format=zip&api-version=5.0&download=true"
+    EXTRACT_DIR: /tmp/mysql
+    APP_USER: root
+
+
+- name: Load Schema
+  shell: mysql -uroot -ppassword < /tmp/mysql/shipping.sql
