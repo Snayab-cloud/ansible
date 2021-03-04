@@ -7,11 +7,11 @@
 - name: Add roboshop user
   ansible.builtin.user:
     name: roboshop
-  when: APP == "catalogue" or APP == "user" or APP == "cart" or APP == "shipping" or APP == "payment" or APP == "rabbitmq"
+  when: APP == "catalogue" or APP == "user" or APP == "cart" or APP == "shipping" or APP == "payment"
   register: out
 
 - name: Grab UID & GID of RoboShop User
-  when: APP == "catalogue" or APP == "user" or APP == "cart" or APP == "shipping" or APP == "payment" or APP == "rabbitmq"
+  when: APP == "catalogue" or APP == "user" or APP == "cart" or APP == "shipping" or APP == "payment"
   set_fact:
     RS_UID: "{{out.uid}}"
     RS_GID: "{{out.group}}"
