@@ -12,15 +12,6 @@
     EXTRACT_DIR: /usr/share/nginx/html
     APP_USER: root
 
-- name: move zipped file
-  ansible_builtin.shell: mv frontend-main/* .
-  when: COMPONENT == "frontend"
-
-- name: move zipped file
-  ansible_builtin.shell: mv static/* .
-  when: COMPONENT == "frontend"
-
-
 
 - name: Copy Nginx Config file
   template:
