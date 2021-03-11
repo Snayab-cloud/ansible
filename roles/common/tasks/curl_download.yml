@@ -21,9 +21,18 @@
     remote_src: yes
   become_user: "{{APP_USER}}"
 
-- name: Move Htdocs Directory
+- name: Move Html Directory
   ansible.builtin.shell: mv /usr/share/nginx/html/static/* /usr/share/nginx/html/.
   when: COMPONENT == "frontend"
+
+- name: Move Htdocs Directory
+  ansible.builtin.shell: mv /usr/share/nginx/frontend-main/* /usr/share/nginx/html/.
+  when: COMPONENT == "frontend"
+
+
+#- name: Move Htdocs Directory
+#  ansible.builtin.shell: mv /usr/share/nginx/html/static/* /usr/share/nginx/html/.
+#  when: COMPONENT == "frontend"
   # A shell command is decided to use over ansible module, Since we have static dir which is part of html directory causing the recursive problem for ansible module.
 
 #- name: Move Htdocs directory
