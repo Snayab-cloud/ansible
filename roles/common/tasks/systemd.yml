@@ -14,11 +14,11 @@
     - {source: "AMQPHOST", dest: "rabbitmq.shaik.cf"}
     - {source: "DBHOST", dest: "mysql.shaik.cf"}
 
-- name: Setup systemd script
-  shell: mv /home/roboshop/{{COMPONENT}}/systemd.service /etc/systemd/system/{{COMPONENT}}.service
+- name: Setup SystemD script
+  ansible.builtin.shell: mv /home/roboshop/{{COMPONENT}}/systemd.service /etc/systemd/system/{{COMPONENT}}.service
 
-- name: Start {{COMPONENT}} service
-  systemd:
+- name: Start {{COMPONENT}} Service
+  ansible.builtin.systemd:
     name: "{{COMPONENT}}"
     state: restarted
     enabled: yes

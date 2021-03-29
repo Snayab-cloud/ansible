@@ -45,6 +45,7 @@ envsubst <record.json >/tmp/${component}.json
 
 aws route53 change-resource-record-sets --hosted-zone-id Z05379411WVF4PZYZRMTH --change-batch file:///tmp/${component}.json
 
+###This is for Inventory file
 sed -i -e "/${component}/ d" ../inventory
 PUBLIC_IPADDRESS=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=${component}" --query 'Reservations[*].Instances[*].PublicIpAddress' --output text)
 echo "${PUBLIC_IPADDRESS} APP=${component}" >>../inventory

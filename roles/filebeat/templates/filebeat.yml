@@ -1,0 +1,58 @@
+filebeat.inputs:
+  {% if COMPONENT == 'catalogue' or COMPONENT == 'cart' or COMPONENT == 'user' %}
+- type: log
+  enabled: true
+  paths:
+    - /var/log/{{COMPONENT}}.log
+  json.keys_under_root: true
+  json.message_key: msg
+  {% elif COMPONENT == 'frontend' %}
+- type: log
+  enabled: true
+  paths:
+    - /var/log/nginx/access.log
+  fields:
+    log_type: nginx_access
+- type: log
+  enabled: true
+  paths:
+    - /var/log/nginx/error.log
+  fields:
+    log_type: nginx_error
+  {% elif COMPONENT == 'payment' %}
+- type: log
+  enabled: true
+  paths:
+    - /var/log/{{COMPONENT}}.log
+  fields:
+    log_type: {{COMPONENT}}
+  include_lines: ['^\[[0-9][0-9][0-9][0-9]']
+  {% elif COMPONENT == 'shipping' %}
+- type: log
+  enabled: true
+  paths:
+    - /var/log/{{COMPONENT}}.log
+  fields:
+    log_type: {{COMPONENT}}
+  include_lines: ["^[0-9][0-9][0-9][0-9]"]
+  {%endif%}
+
+filebeat.config.modules:
+  path: ${path.config}/modules.d/*.yml
+  reload.enabled: false
+setup.template.settings:
+  index.number_of_shards: 1
+setup.kibana:
+
+  {% if COMPONENT == 'catalogue' or COMPONENT == 'cart' or COMPONENT == 'user' %}
+output.elasticsearch:
+  hosts: ["172.31.68.6:9200"]
+  index: "{{COMPONENT}}-%{+yyyy.MM.dd}"
+setup.template.name: "{{COMPONENT}}"
+setup.template.pattern: "{{COMPONENT}}-*"
+setup.template.enabled: false
+setup.ilm.enabled: false
+  {% elif COMPONENT == 'frontend' or COMPONENT == 'shipping' or COMPONENT == 'payment' %}
+output.logstash:
+  hosts: ["172.31.68.6:5044"]
+  {%endif%}

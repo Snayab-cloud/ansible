@@ -1,79 +1,73 @@
-- name: Setup Roboshop Project
+- name: Setup Robohsop Project
   hosts: all
   become: yes
   tasks:
-    - name: Import frontend
-      ansible.builtin.import_role:
-        name: frontend
-      tags:
-       - frontend
-      when: APP == "frontend"
-
-    - name: Import catalogue
+    - name: Import Catalogue
       ansible.builtin.import_role:
         name: catalogue
       tags:
-       - catalogue
+        - catalogue
       when: APP == "catalogue"
 
-    - name: Import mongodb
+    - name: Import Frontend
+      ansible.builtin.import_role:
+        name: frontend
+      tags:
+        - frontend
+      when: APP == "frontend"
+
+    - name: Import MongoDB
       ansible.builtin.import_role:
         name: mongodb
       tags:
-       - mongodb
+        - mongodb
       when: APP == "mongodb"
 
     - name: Import Redis
       ansible.builtin.import_role:
         name: redis
       tags:
-       - redis
+        - redis
       when: APP == "redis"
 
     - name: Import User
       ansible.builtin.import_role:
         name: user
       tags:
-       - user
+        - user
       when: APP == "user"
 
-    - name: Import cart
+    - name: Import Cart
       ansible.builtin.import_role:
         name: cart
       tags:
-       - cart
+        - cart
       when: APP == "cart"
 
-    - name: Import mysql
-      ansible.builtin.import_role:
-        name: mysql
-      tags:
-       - mysql
-      when: APP == "mysql"
-
-    - name: Import shipping
+    - name: Import Shipping
       ansible.builtin.import_role:
         name: shipping
       tags:
-       - shipping
+        - shipping
       when: APP == "shipping"
 
-    - name: Import Rabbitmq
+    - name: Import MySQL
+      ansible.builtin.import_role:
+        name: mysql
+      tags:
+        - mysql
+      when: APP == "mysql"
+
+    - name: Import RabbitMQ
       ansible.builtin.import_role:
         name: rabbitmq
       tags:
-       - rabbitmq
+        - rabbitmq
       when: APP == "rabbitmq"
 
-    - name: Import payment
+    - name: Import Payment
       ansible.builtin.import_role:
         name: payment
       tags:
-       - payment
+        - payment
       when: APP == "payment"
-
-
-
-
-
-

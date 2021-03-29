@@ -1,7 +1,1 @@
-- name: Demo on paly variables
-  hosts: all
-  vars:
-    URL: nayab.com
-  tasks:
-    - debug:
-        msg: URL = {{ URL }}
+URL_FILE: files.example.com
