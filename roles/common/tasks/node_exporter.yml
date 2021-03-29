@@ -15,7 +15,7 @@
     dest: /opt
     remote_src: yes
 
-- name: Rename to standard dir
+- name: Rename to standard directory
   when: p.stat.isdir is not defined
   shell: mv /opt/node_exporter-{{version.stdout}}.linux-amd64 /opt/node_exporter
 
